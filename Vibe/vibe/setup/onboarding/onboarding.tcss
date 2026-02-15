@@ -1,0 +1,313 @@
+/* =============================================================================
+   Onboarding App Styles
+   ============================================================================= */
+
+Screen {
+    align: center middle;
+}
+
+OnboardingScreen {
+    align: center middle;
+}
+
+/* =============================================================================
+   Welcome Screen
+   ============================================================================= */
+
+#welcome-container {
+    align: center middle;
+}
+
+#welcome-text {
+    border: round #555555;
+    padding: 1 3;
+    margin-bottom: 2;
+    text-align: center;
+    width: auto;
+}
+
+WelcomeScreen #enter-hint {
+    color: ansi_bright_black;
+    min-width: 16;
+    text-align: center;
+}
+
+WelcomeScreen #enter-hint.hidden {
+    visibility: hidden;
+}
+
+/* =============================================================================
+   API Key Screen
+   ============================================================================= */
+
+#api-key-outer {
+    overflow-y: auto;
+}
+
+.spacer {
+    height: 1fr;
+}
+
+#api-key-title {
+    text-align: center;
+    margin-bottom: 2;
+}
+
+#api-key-content {
+    width: auto;
+    height: auto;
+}
+
+#api-key-content Static {
+    text-align: center;
+}
+
+.link-row {
+    width: auto;
+    height: auto;
+    margin-top: 1;
+}
+
+.link-chevron {
+    width: auto;
+}
+
+#input-box {
+    border: round #555555;
+    padding: 0 1;
+    margin-top: 2;
+    width: auto;
+    height: 3;
+}
+
+#input-box.valid {
+    border: round ansi_green;
+}
+
+#input-box.invalid {
+    border: round ansi_red;
+}
+
+#key {
+    border: none;
+    width: 48;
+    height: 1;
+    padding: 0;
+}
+
+#paste-hint {
+    margin-top: 3;
+}
+
+#feedback {
+    text-align: center;
+    height: 1;
+    margin-top: 1;
+}
+
+#feedback.error {
+    color: ansi_red;
+}
+
+#feedback.success {
+    color: ansi_bright_black;
+}
+
+#config-docs-section {
+    width: 100%;
+    height: auto;
+    align: center top;
+    padding-bottom: 2;
+}
+
+#config-docs-group {
+    width: auto;
+    height: auto;
+}
+
+#config-docs-group Static {
+    color: ansi_bright_black;
+}
+
+#config-docs-group .link-row {
+    margin-top: 0;
+}
+
+/* =============================================================================
+   Provider Selection Screen
+   ============================================================================= */
+
+#provider-selection-outer {
+    overflow-y: auto;
+}
+
+#provider-selection-title {
+    text-align: center;
+    margin-bottom: 2;
+}
+
+#provider-selection-content {
+    width: auto;
+    height: auto;
+}
+
+#provider-selection-content Static {
+    text-align: center;
+}
+
+.provider-description {
+    text-align: center;
+    margin-bottom: 1;
+}
+
+.spacer-small {
+    height: 1;
+}
+
+#provider-buttons {
+    width: auto;
+    height: auto;
+    align: center middle;
+}
+
+#provider-buttons Button {
+    width: 40;
+    margin: 1;
+}
+
+.ollama-info {
+    text-align: center;
+    margin-bottom: 1;
+    color: ansi_bright_black;
+}
+
+/* =============================================================================
+   Model Selection Screen
+   ============================================================================= */
+
+#model-selection-outer {
+    overflow-y: auto;
+}
+
+#model-selection-title {
+    text-align: center;
+    margin-bottom: 2;
+}
+
+#model-selection-content {
+    width: auto;
+    height: auto;
+}
+
+#model-selection-content Static {
+    text-align: center;
+}
+
+.model-description {
+    text-align: center;
+    margin-bottom: 1;
+}
+
+#model-buttons {
+    width: auto;
+    height: auto;
+    align: center middle;
+}
+
+#model-buttons Button {
+    width: 50;
+    margin: 1;
+}
+
+/* =============================================================================
+   Ollama Model Screen
+   ============================================================================= */
+
+#ollama-model-outer {
+    overflow-y: auto;
+}
+
+#ollama-model-title {
+    text-align: center;
+    margin-bottom: 2;
+}
+
+#ollama-model-content {
+    width: auto;
+    height: auto;
+}
+
+#ollama-model-content Static {
+    text-align: center;
+}
+
+.ollama-description {
+    text-align: center;
+    margin-bottom: 1;
+}
+
+.available-models {
+    text-align: center;
+    margin-bottom: 1;
+    min-height: 1;
+}
+
+.available-models.success {
+    color: ansi_green;
+}
+
+.available-models.warning {
+    color: ansi_yellow;
+}
+
+#input-hint {
+    margin-top: 2;
+    margin-bottom: 1;
+}
+
+#model-input-box {
+    border: round #555555;
+    padding: 0 1;
+    margin-top: 1;
+    width: auto;
+    height: 3;
+}
+
+#model-input-box.valid {
+    border: round ansi_green;
+}
+
+#model-input-box.invalid {
+    border: round ansi_red;
+}
+
+#model-name {
+    border: none;
+    width: 48;
+    height: 1;
+    padding: 0;
+}
+
+.model-suggestions {
+    text-align: center;
+    color: ansi_bright_black;
+    margin-top: 1;
+}
+
+#ollama-model-content #feedback {
+    text-align: center;
+    min-height: 2;
+    margin-top: 1;
+}
+
+#ollama-model-content #feedback.error {
+    color: ansi_red;
+}
+
+#ollama-model-content #feedback.success {
+    color: ansi_green;
+}
+
+#ollama-model-content #feedback.info {
+    color: ansi_cyan;
+}

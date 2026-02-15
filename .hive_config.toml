@@ -1,0 +1,251 @@
+# HiveTerminal Configuration File
+# This file extends Vibe's configuration with HiveTerminal-specific settings
+# Place this file at the workspace root to customize HiveTerminal behavior
+
+# ============================================================================
+# Mode Configuration
+# ============================================================================
+# Choose the default operation mode for HiveTerminal
+# - "conversational": Tool-by-tool execution with individual approvals (Vibe Mode)
+# - "spec": Three-phase workflow with Plan → Approve → Execute (Spec-First Mode)
+default_mode = "conversational"
+
+# ============================================================================
+# AI Configuration (from Vibe)
+# ============================================================================
+# The active model to use for AI operations
+active_model = "qwen2.5-coder"
+
+# Auto-approve tool executions without prompting (use with caution!)
+auto_approve = false
+
+# API timeout in seconds
+api_timeout = 720.0
+
+# ============================================================================
+# Provider Configuration
+# ============================================================================
+# HiveTerminal supports multiple AI providers through LiteLLM
+# Configure your preferred providers below
+
+[[providers]]
+name = "openai"
+api_base = "https://api.openai.com/v1"
+api_key_env_var = "OPENAI_API_KEY"
+backend = "generic"
+
+[[providers]]
+name = "anthropic"
+api_base = "https://api.anthropic.com/v1"
+api_key_env_var = "ANTHROPIC_API_KEY"
+backend = "generic"
+
+[[providers]]
+name = "openrouter"
+api_base = "https://openrouter.ai/api/v1"
+api_key_env_var = "OPENROUTER_API_KEY"
+backend = "generic"
+
+[[providers]]
+name = "ollama"
+api_base = "http://localhost:11434/v1"
+api_key_env_var = ""  # Ollama doesn't require an API key
+backend = "generic"
+
+# ============================================================================
+# Model Configuration
+# ============================================================================
+# Define available models and their settings
+# Each model must reference a provider configured above
+
+[[models]]
+name = "gpt-4"
+provider = "openai"
+alias = "gpt-4"
+temperature = 0.7
+input_price = 30.0   # Price per million tokens
+output_price = 60.0  # Price per million tokens
+
+[[models]]
+name = "gpt-4o"
+provider = "openai"
+alias = "gpt-4o"
+temperature = 0.7
+input_price = 5.0
+output_price = 15.0
+
+[[models]]
+name = "claude-3-5-sonnet-20241022"
+provider = "anthropic"
+alias = "claude-sonnet"
+temperature = 0.7
+input_price = 3.0
+output_price = 15.0
+
+[[models]]
+name = "mistralai/mistral-7b-instruct"
+provider = "openrouter"
+alias = "mistral-7b"
+temperature = 0.7
+input_price = 0.06   # OpenRouter pricing per million tokens
+output_price = 0.06
+
+[[models]]
+name = "mistralai/mistral-nemo"
+provider = "openrouter"
+alias = "mistral-nemo"
+temperature = 0.7
+input_price = 0.13
+output_price = 0.13
+
+[[models]]
+name = "llama3.2"
+provider = "ollama"
+alias = "llama3.2"
+temperature = 0.7
+input_price = 0.0  # Local models are free
+output_price = 0.0
+
+# ============================================================================
+# Memory Configuration (HiveTerminal-specific)
+# ============================================================================
+[memory]
+# Path to the ChromaDB vector database directory
+# This directory stores code embeddings for intelligent context retrieval
+database_path = "./.hive_memory"
+
+# Embedding model to use for generating code embeddings
+# Options:
+# - "text-embedding-ada-002" (OpenAI, requires OPENAI_API_KEY)
+# - "all-MiniLM-L6-v2" (local, free, no API key required)
+embedding_model = "text-embedding-ada-002"
+
+# Maximum number of tokens per code chunk
+# Larger chunks provide more context but may be less precise
+# Range: 1-8000, Default: 1000
+chunk_size = 1000
+
+# Number of overlapping tokens between consecutive chunks
+# Overlap helps maintain context across chunk boundaries
+# Must be less than chunk_size, Default: 200
+chunk_overlap = 200
+
+# Number of top results to return from similarity search
+# More results provide broader context but may include less relevant code
+# Range: 1-50, Default: 5
+top_k_results = 5
+
+# Minimum similarity score for including results (0.0-1.0)
+# Higher threshold means only very relevant code is included
+# Lower threshold provides more context but may include less relevant code
+# Default: 0.7
+similarity_threshold = 0.7
+
+# ============================================================================
+# Spec Mode Configuration (HiveTerminal-specific)
+# ============================================================================
+[spec_mode]
+# Create backups of files before modifying them
+# Backups are stored in backup_dir and can be used for rollback
+create_backups = true
+
+# Directory to store file backups
+backup_dir = "./.hive_backups"
+
+# Maximum number of retries for failed actions during plan execution
+# Range: 0-10, Default: 3
+max_retries = 3
+
+# Timeout in seconds for plan execution
+# If execution takes longer than this, it will be aborted
+# Range: 1-3600, Default: 300 (5 minutes)
+timeout_seconds = 300
+
+# ============================================================================
+# Project Context Configuration (from Vibe)
+# ============================================================================
+[project_context]
+# Maximum characters to include in project context
+max_chars = 40000
+
+# ============================================================================
+# Session Logging Configuration (from Vibe)
+# ============================================================================
+[session_logging]
+# Enable session logging
+enabled = true
+
+# Directory to save session logs
+# Logs include conversation history, tool executions, and errors
+save_dir = "~/.hive_logs"
+
+# ============================================================================
+# Tool Configuration (from Vibe)
+# ============================================================================
+[tools]
+# Configure specific tools here
+# Example:
+# [tools.bash]
+# timeout = 60
+
+# ============================================================================
+# Additional Vibe Settings
+# ============================================================================
+# Enable Vim keybindings in the TUI
+vim_keybindings = false
+
+# Disable welcome banner animation
+disable_welcome_banner_animation = false
+
+# Automatically copy responses to clipboard
+autocopy_to_clipboard = true
+
+# Auto-compact conversation when context exceeds this threshold
+auto_compact_threshold = 200000
+
+# Show context warnings when approaching limits
+context_warnings = false
+
+# Include commit signature in session logs
+include_commit_signature = true
+
+# Include model information in session logs
+include_model_info = true
+
+# Include project context in prompts
+include_project_context = true
+
+# Include prompt details in session logs
+include_prompt_detail = true
+
+# Enable automatic update checks
+enable_update_checks = true
+
+# Enable automatic updates
+enable_auto_update = true
+
+# ============================================================================
+# Usage Examples
+# ============================================================================
+# 
+# Starting HiveTerminal:
+#   hive                          # Interactive mode selection
+#   hive --mode conversational    # Start in Conversational Mode
+#   hive --mode spec              # Start in Spec-First Mode
+#
+# Memory Management:
+#   hive --rebuild-memory         # Rebuild the vector database
+#   hive --memory-stats           # Display memory statistics
+#
+# Switching Modes:
+#   /mode                         # Switch modes during a session
+#
+# Environment Variables:
+#   OPENAI_API_KEY                # OpenAI API key
+#   ANTHROPIC_API_KEY             # Anthropic API key
+#   OPENROUTER_API_KEY            # OpenRouter API key (for Mistral, Llama, etc.)
+#   OLLAMA_HOST                   # Ollama server URL (default: http://localhost:11434)
+#   HIVE_MODE                     # Override default mode (conversational or spec)
+#   HIVE_CONFIG_PATH              # Custom config file path
+#
+# ============================================================================
