@@ -54,7 +54,7 @@ HiveTerminal is an AI-powered coding assistant that combines the flexibility of 
 
 #### macOS & Linux
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Tushar04-Master/HiveTerminal/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/master/install.sh | sed 's/Tushar04-Master/HyphaeAI/g' | bash
 ```
 
 #### Windows (PowerShell)
