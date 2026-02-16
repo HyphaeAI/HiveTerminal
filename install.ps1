@@ -1,5 +1,5 @@
 # HiveTerminal One-Line Installer for Windows
-# Usage: irm https://raw.githubusercontent.com/Tushar04-Master/hiveterminal/main/install.ps1 | iex
+# Usage: irm https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.ps1 | iex
 
 Write-Host "🐝 Installing HiveTerminal..." -ForegroundColor Cyan
 Write-Host ""
@@ -94,7 +94,7 @@ if (Test-Path $installDir) {
 Write-Host ""
 Write-Host "📦 Cloning HiveTerminal..." -ForegroundColor Cyan
 try {
-    git clone https://github.com/Tushar04-Master/hiveterminal.git $installDir
+    git clone https://github.com/HyphaeAI/HiveTerminal.git $installDir
     Set-Location $installDir
 } catch {
     Write-Host "❌ Failed to clone repository" -ForegroundColor Red
