@@ -2,6 +2,8 @@
 
 A dual-mode terminal-based agentic IDE with shared memory, built on Mistral Vibe.
 
+**✨ Now with full Windows support!** Works on macOS, Linux, and Windows 10/11.
+
 ## What is HiveTerminal?
 
 HiveTerminal is an AI-powered coding assistant that combines the flexibility of conversational workflows with the transparency of spec-first development. Built on top of Mistral Vibe, it adds two key innovations:
@@ -48,35 +50,231 @@ HiveTerminal is an AI-powered coding assistant that combines the flexibility of 
 
 ## Quick Start
 
-### Installation
+### One-Line Installation
+
+#### macOS & Linux
+```bash
+curl -fsSL https://raw.githubusercontent.com/Tushar04-Master/hiveterminal/main/install.sh | bash
+```
+
+#### Windows (PowerShell)
+```powershell
+irm https://raw.githubusercontent.com/Tushar04-Master/hiveterminal/main/install.ps1 | iex
+```
+
+**What the installer does:**
+- ✅ Clone HiveTerminal
+- ✅ Set up Python virtual environment
+- ✅ Install all dependencies
+- ✅ Add `hive` command to your PATH
+- ✅ Run initial setup
+
+**After installation, you'll need to:**
+1. Install Ollama (for local AI models)
+2. Download an AI model
+3. Restart your terminal/PowerShell
+
+---
+
+### Installing Ollama & AI Models
+
+#### 1. Install Ollama
+
+**macOS:**
+```bash
+brew install ollama
+```
+
+**Linux:**
+```bash
+curl -fsSL https://ollama.ai/install.sh | sh
+```
+
+**Windows:**
+- Download from: https://ollama.ai/download/windows
+- Run the installer
+- Ollama will start automatically
+
+**Or visit:** https://ollama.ai
+
+#### 2. Choose Your AI Model
+
+**For Best Results (Recommended):**
+```bash
+# Best for coding with tool calling (7B parameters)
+ollama pull qwen2.5-coder:7b        # 4.7GB download
+
+# Alternative: Fast and capable
+ollama pull deepseek-coder:6.7b     # 3.8GB download
+```
+
+**For Faster/Smaller Systems:**
+```bash
+# Balanced performance (3B parameters)
+ollama pull qwen2.5:3b              # 1.9GB download
+
+# Fastest but limited (1.5B parameters - may struggle with tools)
+ollama pull qwen2.5-coder:1.5b      # 986MB download
+```
+
+**⚠️ Important:** Models smaller than 7B may have issues with tool calling (outputting raw JSON instead of proper responses). For best experience, use 7B+ models.
+
+**📖 Detailed model comparison:** See [MODEL_GUIDE.md](MODEL_GUIDE.md) for comprehensive model selection guide.
+
+#### 3. Start HiveTerminal
+
+**macOS & Linux:**
+```bash
+# Restart your terminal, then:
+hive
+
+# Follow the setup prompts:
+# 1. Select "Ollama" as your provider
+# 2. Enter your model name (e.g., "qwen2.5-coder:7b")
+# 3. Choose your preferred mode
+```
+
+**Windows:**
+```powershell
+# Restart PowerShell, then:
+hive
+
+# Follow the setup prompts:
+# 1. Select "Ollama" as your provider
+# 2. Enter your model name (e.g., "qwen2.5-coder:7b")
+# 3. Choose your preferred mode
+```
+
+---
+
+### Model Comparison
+
+| Model | Size | RAM Needed | Tool Calling | Speed | Best For |
+|-------|------|------------|--------------|-------|----------|
+| qwen2.5-coder:7b | 4.7GB | 8GB+ | ✅ Excellent | Medium | Production use, complex tasks |
+| deepseek-coder:6.7b | 3.8GB | 8GB+ | ✅ Excellent | Fast | Coding, fast responses |
+| qwen2.5:3b | 1.9GB | 4GB+ | ⚠️ Limited | Fast | Simple tasks, testing |
+| qwen2.5-coder:1.5b | 986MB | 2GB+ | ❌ Poor | Very Fast | Quick tests only |
+
+---
+
+### Manual Installation
+
+<details>
+<summary><b>macOS & Linux</b></summary>
 
 ```bash
-# Clone the repository
-git clone <repository_url>
+# 1. Install Ollama
+# macOS:
+brew install ollama
+
+# Linux:
+curl -fsSL https://ollama.ai/install.sh | sh
+
+# 2. Clone the repository
+git clone https://github.com/Tushar04-Master/hiveterminal.git
 cd hiveterminal
 
-# Create virtual environment (Python 3.13 recommended for ChromaDB compatibility)
-python3.13 -m venv .venv-3.13
-source .venv-3.13/bin/activate  # On Mac/Linux
+# 3. Create virtual environment (Python 3.10+ required, 3.13 recommended)
+python3 -m venv .venv
+source .venv/bin/activate  # On Mac/Linux
 
-# Install HiveTerminal and Vibe in editable mode
+# 4. Install HiveTerminal and Vibe in editable mode
 pip install -e .
 pip install -e Vibe/
 
-# Install Ollama (if not already installed)
-# Visit https://ollama.ai or use:
-# brew install ollama  # On macOS
+# 5. Download an AI model (choose based on your needs)
+# Recommended for best results:
+ollama pull qwen2.5-coder:7b        # 4.7GB - Best for coding
 
-# Pull a model (recommended: qwen2.5-coder:7b for best results)
-ollama pull qwen2.5-coder:7b
-# or for smaller/faster: ollama pull qwen2.5-coder:1.5b
+# Or alternatives:
+ollama pull deepseek-coder:6.7b     # 3.8GB - Fast & capable
+ollama pull qwen2.5:3b              # 1.9GB - Balanced
+ollama pull qwen2.5-coder:1.5b      # 986MB - Fastest (limited)
+
+# 6. Add to PATH (choose your shell config file)
+echo 'export PATH="$HOME/hiveterminal:$PATH"' >> ~/.zshrc   # for zsh
+# or
+echo 'export PATH="$HOME/hiveterminal:$PATH"' >> ~/.bashrc  # for bash
+
+# 7. Create alias for easy access
+echo 'alias hive="cd ~/hiveterminal && source .venv/bin/activate && python -m hiveterminal.cli.entrypoint"' >> ~/.zshrc
+# or for bash:
+echo 'alias hive="cd ~/hiveterminal && source .venv/bin/activate && python -m hiveterminal.cli.entrypoint"' >> ~/.bashrc
+
+# 8. Reload shell configuration
+source ~/.zshrc  # or source ~/.bashrc
+
+# 9. Run setup
+hive --setup
 ```
+
+</details>
+
+<details>
+<summary><b>Windows</b></summary>
+
+**Prerequisites:**
+- Python 3.10+ ([Download](https://www.python.org/downloads/))
+  - During installation, check "Add Python to PATH"
+- Git for Windows ([Download](https://git-scm.com/download/win))
+- Ollama ([Download](https://ollama.ai/download/windows))
+
+**Installation Steps:**
+
+```powershell
+# 1. Install Ollama
+# Download and install from: https://ollama.ai/download/windows
+
+# 2. Clone the repository
+git clone https://github.com/Tushar04-Master/hiveterminal.git
+cd hiveterminal
+
+# 3. Create virtual environment
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+
+# 4. Install HiveTerminal and Vibe
+pip install -e .
+pip install -e Vibe\
+
+# 5. Download an AI model
+# Recommended for best results:
+ollama pull qwen2.5-coder:7b        # 4.7GB - Best for coding
+
+# Or alternatives:
+ollama pull deepseek-coder:6.7b     # 3.8GB - Fast & capable
+ollama pull qwen2.5:3b              # 1.9GB - Balanced
+ollama pull qwen2.5-coder:1.5b      # 986MB - Fastest (limited)
+
+# 6. Create wrapper script
+@"
+@echo off
+cd /d "$PWD"
+call .venv\Scripts\activate.bat
+python -m hiveterminal.cli.entrypoint %*
+"@ | Out-File -FilePath hive.bat -Encoding ASCII
+
+# 7. Add to PATH (run as Administrator)
+$currentPath = [Environment]::GetEnvironmentVariable("Path", "User")
+[Environment]::SetEnvironmentVariable("Path", "$currentPath;$PWD", "User")
+
+# 8. Restart PowerShell and run setup
+hive --setup
+```
+
+</details>
 
 ### First Run
 
 ```bash
-# Start HiveTerminal
+# If you used the one-line installer, just type:
 hive
+
+# If you installed manually, activate the environment first:
+cd ~/hiveterminal
+source .venv/bin/activate
+python -m hiveterminal.cli.entrypoint
 
 # First time: You'll see onboarding to select your LLM provider
 # Choose Ollama and enter your model name (e.g., qwen2.5-coder:7b)
@@ -92,6 +290,44 @@ hive --mode spec            # Spec-first mode
 # Run setup again anytime:
 hive --setup
 ```
+
+### Adding to PATH (Manual Installation)
+
+To use `hive` from anywhere, add it to your PATH:
+
+**For zsh (macOS default):**
+```bash
+# Add to ~/.zshrc
+echo 'alias hive="cd ~/hiveterminal && source .venv/bin/activate && python -m hiveterminal.cli.entrypoint"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+**For bash (Linux default):**
+```bash
+# Add to ~/.bashrc
+echo 'alias hive="cd ~/hiveterminal && source .venv/bin/activate && python -m hiveterminal.cli.entrypoint"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+**Alternative: Create a wrapper script**
+```bash
+# Create wrapper script
+cat > ~/hiveterminal/hive << 'EOF'
+#!/bin/bash
+cd ~/hiveterminal
+source .venv/bin/activate
+python -m hiveterminal.cli.entrypoint "$@"
+EOF
+
+# Make it executable
+chmod +x ~/hiveterminal/hive
+
+# Add to PATH
+echo 'export PATH="$HOME/hiveterminal:$PATH"' >> ~/.zshrc  # or ~/.bashrc
+source ~/.zshrc  # or source ~/.bashrc
+```
+
+Now you can run `hive` from any directory!
 
 ## Usage Examples
 
@@ -326,10 +562,202 @@ hiveterminal/
 
 ## Requirements
 
-- Python 3.13+ (recommended for ChromaDB compatibility)
-- macOS or Linux
-- Ollama installed and running
-- Recommended: 8GB+ RAM for 7B models, 4GB+ for smaller models
+### All Platforms
+- Python 3.10+ (3.13 recommended for ChromaDB compatibility)
+- Git
+- Ollama (install from https://ollama.ai)
+
+### System Requirements by Model
+
+| Model | Download | RAM | Disk | Tool Calling |
+|-------|----------|-----|------|--------------|
+| 7B models | 4-5GB | 8GB+ | 10GB+ | ✅ Excellent |
+| 3B models | 2GB | 4GB+ | 5GB+ | ⚠️ Limited |
+| 1.5B models | 1GB | 2GB+ | 3GB+ | ❌ Poor |
+
+### Platform-Specific
+
+**macOS:**
+- macOS 10.15 (Catalina) or later
+- Homebrew (recommended for easy installation)
+
+**Linux:**
+- Ubuntu 20.04+, Debian 11+, Fedora 35+, or equivalent
+- systemd (for Ollama service management)
+
+**Windows:**
+- Windows 10 (version 1809) or later
+- Windows 11 (recommended)
+- PowerShell 5.1 or later (comes with Windows)
+- Administrator access (for PATH modification)
+
+## Choosing the Right Model
+
+### For Production Use
+- **qwen2.5-coder:7b** (4.7GB) - Best overall, excellent tool calling
+- **deepseek-coder:6.7b** (3.8GB) - Fast and capable alternative
+
+### For Development/Testing
+- **qwen2.5:3b** (1.9GB) - Good balance of speed and capability
+- **qwen2.5-coder:1.5b** (986MB) - Fast but limited, may struggle with tools
+
+### System Requirements by Model
+
+| Model | Download | RAM | Disk | Tool Calling |
+|-------|----------|-----|------|--------------|
+| 7B models | 4-5GB | 8GB+ | 10GB+ | ✅ Excellent |
+| 3B models | 2GB | 4GB+ | 5GB+ | ⚠️ Limited |
+| 1.5B models | 1GB | 2GB+ | 3GB+ | ❌ Poor |
+
+**Note:** Smaller models (< 7B) may output raw JSON instead of proper responses and struggle with complex tool interactions.
+
+## Troubleshooting
+
+### `hive: command not found` (macOS/Linux) or `'hive' is not recognized` (Windows)
+
+**Solution 1**: Restart your terminal/PowerShell after installation
+
+**Solution 2**: Manually source your shell config (macOS/Linux):
+```bash
+source ~/.zshrc  # for zsh
+# or
+source ~/.bashrc  # for bash
+```
+
+**Solution 3** (Windows): Check if PATH was updated:
+```powershell
+$env:Path -split ';' | Select-String "hiveterminal"
+```
+
+If not found, add manually:
+```powershell
+# Run as Administrator
+$currentPath = [Environment]::GetEnvironmentVariable("Path", "User")
+[Environment]::SetEnvironmentVariable("Path", "$currentPath;$env:USERPROFILE\.hiveterminal", "User")
+```
+
+**Solution 4**: Check if the alias was added (macOS/Linux):
+```bash
+grep "hive" ~/.zshrc  # or ~/.bashrc
+```
+
+### Ollama connection errors
+
+**Check if Ollama is running:**
+```bash
+# macOS/Linux:
+ollama list
+
+# Windows:
+ollama list
+```
+
+**Start Ollama service:**
+
+**macOS:**
+```bash
+brew services start ollama
+```
+
+**Linux:**
+```bash
+ollama serve &
+```
+
+**Windows:**
+- Ollama runs as a background service automatically
+- Check system tray for Ollama icon
+- If not running, start from Start Menu: "Ollama"
+
+### Model not found (404 error)
+
+**List available models:**
+```bash
+ollama list
+```
+
+**Pull the model:**
+```bash
+ollama pull qwen2.5-coder:7b
+```
+
+**Make sure model name matches exactly** (including tag):
+```bash
+# Wrong: qwen2.5-coder
+# Right: qwen2.5-coder:7b
+```
+
+### Small model issues (tool calling problems)
+
+If using models smaller than 7B (like 1.5B or 3B), you may experience:
+- Raw JSON output instead of proper responses
+- Inappropriate tool calls
+- Confusion about when to use tools
+
+**Solution**: Use a larger model (7B+ recommended):
+```bash
+ollama pull qwen2.5-coder:7b
+hive --setup  # Select the new model
+```
+
+### Python version issues
+
+**Check Python version:**
+```bash
+# macOS/Linux:
+python3 --version
+
+# Windows:
+python --version
+```
+
+**Install Python 3.13** (recommended):
+
+**macOS:**
+```bash
+brew install python@3.13
+```
+
+**Linux (Ubuntu/Debian):**
+```bash
+sudo apt update
+sudo apt install python3.13 python3.13-venv
+```
+
+**Windows:**
+- Download from: https://www.python.org/downloads/
+- During installation, check "Add Python to PATH"
+- Restart PowerShell after installation
+
+### Windows-Specific Issues
+
+**PowerShell Execution Policy Error:**
+```
+cannot be loaded because running scripts is disabled
+```
+
+**Solution:**
+```powershell
+# Run as Administrator
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+**Python not found after installation (Windows):**
+
+**Solution:** Add Python to PATH manually:
+1. Search for "Environment Variables" in Start Menu
+2. Click "Environment Variables"
+3. Under "User variables", select "Path" and click "Edit"
+4. Click "New" and add: `C:\Users\YourUsername\AppData\Local\Programs\Python\Python313`
+5. Click "New" and add: `C:\Users\YourUsername\AppData\Local\Programs\Python\Python313\Scripts`
+6. Click "OK" and restart PowerShell
+
+**Git not found (Windows):**
+
+**Solution:** Install Git for Windows:
+- Download from: https://git-scm.com/download/win
+- Use default installation options
+- Restart PowerShell after installation
 
 ## Contributing
 
