@@ -20,7 +20,7 @@ A lightweight bash script that:
 
 **Usage:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/master/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Tushar04-Master/HiveTerminal/main/install.sh | bash
 ```
 
 ### 2. Updated README.md

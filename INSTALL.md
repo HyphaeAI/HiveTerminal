@@ -6,12 +6,12 @@
 
 **macOS & Linux:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/master/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Tushar04-Master/HiveTerminal/main/install.sh | bash
 ```
 
 **Windows (PowerShell):**
 ```powershell
-irm https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/master/install.ps1 | iex
+irm https://raw.githubusercontent.com/Tushar04-Master/HiveTerminal/main/install.ps1 | iex
 ```
 
 This automated installer will:
@@ -89,7 +89,7 @@ hive
 
 #### 1. Clone Repository
 ```bash
-git clone https://github.com/HyphaeAI/HiveTerminal.git
+git clone https://github.com/Tushar04-Master/HiveTerminal.git
 cd hiveterminal
 ```
 

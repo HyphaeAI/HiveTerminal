@@ -54,12 +54,12 @@ HiveTerminal is an AI-powered coding assistant that combines the flexibility of 
 
 #### macOS & Linux
 ```bash
-curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/master/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Tushar04-Master/HiveTerminal/main/install.sh | bash
 ```
 
 #### Windows (PowerShell)
 ```powershell
-irm https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/master/install.ps1 | iex
+irm https://raw.githubusercontent.com/Tushar04-Master/HiveTerminal/main/install.ps1 | iex
 ```
 
 **What the installer does:**
@@ -172,7 +172,7 @@ brew install ollama
 curl -fsSL https://ollama.ai/install.sh | sh
 
 # 2. Clone the repository
-git clone https://github.com/HyphaeAI/HiveTerminal.git
+git clone https://github.com/Tushar04-Master/HiveTerminal.git
 cd hiveterminal
 
 # 3. Create virtual environment (Python 3.10+ required, 3.13 recommended)
@@ -227,7 +227,7 @@ hive --setup
 # Download and install from: https://ollama.ai/download/windows
 
 # 2. Clone the repository
-git clone https://github.com/HyphaeAI/HiveTerminal.git
+git clone https://github.com/Tushar04-Master/HiveTerminal.git
 cd hiveterminal
 
 # 3. Create virtual environment

@@ -8,17 +8,17 @@ After pushing to GitHub, update these files with your actual GitHub username/rep
 Replace `Tushar04-Master` with your GitHub username:
 ```bash
 # Line 4:
-# Usage: curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/master/install.sh | bash
+# Usage: curl -fsSL https://raw.githubusercontent.com/Tushar04-Master/HiveTerminal/main/install.sh | bash
 
 # Line 73:
-git clone https://github.com/HyphaeAI/HiveTerminal.git "$INSTALL_DIR"
+git clone https://github.com/Tushar04-Master/HiveTerminal.git "$INSTALL_DIR"
 ```
 
 ### 2. README.md
 Replace `Tushar04-Master` with your GitHub username:
 ```bash
 # In the "One-Line Installation" section:
-curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/master/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Tushar04-Master/HiveTerminal/main/install.sh | bash
 ```
 
 ### 3. INSTALL.md

@@ -2,7 +2,7 @@
 set -e
 
 # HiveTerminal One-Line Installer
-# Usage: curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/master/install.sh | bash
+# Usage: curl -fsSL https://raw.githubusercontent.com/Tushar04-Master/HiveTerminal/main/install.sh | bash
 
 echo "🐝 Installing HiveTerminal..."
 echo ""
@@ -76,7 +76,7 @@ fi
 
 echo ""
 echo "📦 Cloning HiveTerminal..."
-git clone https://github.com/HyphaeAI/HiveTerminal.git "$INSTALL_DIR"
+git clone https://github.com/Tushar04-Master/HiveTerminal.git "$INSTALL_DIR"
 cd "$INSTALL_DIR"
 
 # Create virtual environment

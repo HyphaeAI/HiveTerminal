@@ -46,5 +46,5 @@ Add one-line installer and comprehensive installation documentation
   * Update requirements for all platforms
 
 Users can now install on any platform with:
-- macOS/Linux: curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/master/install.sh | bash
-- Windows: irm https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/master/install.ps1 | iex
+- macOS/Linux: curl -fsSL https://raw.githubusercontent.com/Tushar04-Master/HiveTerminal/main/install.sh | bash
+- Windows: irm https://raw.githubusercontent.com/Tushar04-Master/HiveTerminal/main/install.ps1 | iex

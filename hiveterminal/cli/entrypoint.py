@@ -25,6 +25,8 @@ from vibe.setup.trusted_folders.trust_folder_dialog import (
     TrustDialogQuitException,
     ask_trust_folder,
 )
+import subprocess
+from datetime import datetime
 
 
 def parse_arguments() -> argparse.Namespace:
@@ -96,6 +98,23 @@ def parse_arguments() -> argparse.Namespace:
         type=Path,
         metavar="DIR",
         help="Change to this directory before running",
+    )
+    
+    # Update commands
+    parser.add_argument(
+        "--update",
+        action="store_true",
+        help="Update HiveTerminal to the latest version"
+    )
+    parser.add_argument(
+        "--check-updates",
+        action="store_true",
+        help="Check if updates are available without updating"
+    )
+    parser.add_argument(
+        "--changelog",
+        action="store_true",
+        help="Display the changelog"
     )
 
     # Feature flag for teleport, not exposed to the user yet
@@ -225,6 +244,243 @@ def rebuild_memory_database() -> None:
     except Exception as e:
         console.print(f"\n[bold red]Error rebuilding database:[/bold red] {e}\n")
         sys.exit(1)
+
+
+def display_memory_stats() -> None:
+    """Display Hive Mind memory statistics."""
+    from hiveterminal.core.config import HiveTerminalConfig
+    from hiveterminal.memory.manager import MemoryManager
+    
+    console = Console()
+    
+    try:
+        console.print("\n[bold cyan]Hive Mind Memory Statistics[/bold cyan]\n")
+        
+        # Load configuration
+        config = HiveTerminalConfig.load()
+        memory_config = config.memory
+        
+        # Initialize memory manager
+        manager = MemoryManager(memory_config)
+        manager.initialize_database()
+        
+        # Get statistics
+        stats = manager.get_database_stats()
+        
+        # Display general stats
+        table = Table(title="Database Overview")
+        table.add_column("Metric", style="cyan")
+        table.add_column("Value", style="green")
+        
+        table.add_row("Database Path", str(memory_config.database_path))
+        table.add_row("Total Chunks", str(stats.total_chunks))
+        table.add_row("Total Files", str(stats.total_files))
+        table.add_row("Database Size", f"{stats.database_size_mb():.2f} MB")
+        table.add_row("Avg Chunks/File", f"{stats.average_chunks_per_file():.1f}")
+        
+        if stats.last_updated:
+            table.add_row("Last Updated", stats.last_updated.strftime("%Y-%m-%d %H:%M:%S"))
+        if stats.oldest_chunk:
+            table.add_row("Oldest Chunk", stats.oldest_chunk.strftime("%Y-%m-%d %H:%M:%S"))
+        
+        console.print(table)
+        
+        # Display language breakdown
+        if stats.languages:
+            console.print()
+            lang_table = Table(title="Language Breakdown")
+            lang_table.add_column("Language", style="cyan")
+            lang_table.add_column("Chunks", style="green")
+            lang_table.add_column("Percentage", style="yellow")
+            
+            sorted_langs = sorted(stats.languages.items(), key=lambda x: x[1], reverse=True)
+            for lang, count in sorted_langs:
+                percentage = (count / stats.total_chunks * 100) if stats.total_chunks > 0 else 0
+                lang_table.add_row(lang, str(count), f"{percentage:.1f}%")
+            
+            console.print(lang_table)
+        
+        console.print()
+        manager.close()
+        
+    except Exception as e:
+        console.print(f"\n[bold red]Error retrieving statistics:[/bold red] {e}\n")
+        sys.exit(1)
+
+
+def check_for_updates() -> tuple[bool, str, str]:
+    """Check if updates are available.
+    
+    Returns:
+        tuple: (has_update, current_version, latest_version)
+    """
+    try:
+        # Get installation directory
+        install_dir = Path.home() / ".hiveterminal"
+        if not install_dir.exists():
+            return (False, "unknown", "unknown")
+        
+        # Get current commit
+        result = subprocess.run(
+            ["git", "rev-parse", "--short", "HEAD"],
+            cwd=install_dir,
+            capture_output=True,
+            text=True,
+            timeout=5
+        )
+        current_commit = result.stdout.strip() if result.returncode == 0 else "unknown"
+        
+        # Fetch latest from remote
+        subprocess.run(
+            ["git", "fetch", "origin", "master"],
+            cwd=install_dir,
+            capture_output=True,
+            timeout=10
+        )
+        
+        # Get latest commit
+        result = subprocess.run(
+            ["git", "rev-parse", "--short", "origin/master"],
+            cwd=install_dir,
+            capture_output=True,
+            text=True,
+            timeout=5
+        )
+        latest_commit = result.stdout.strip() if result.returncode == 0 else "unknown"
+        
+        has_update = current_commit != latest_commit and current_commit != "unknown"
+        
+        return (has_update, current_commit, latest_commit)
+        
+    except Exception:
+        return (False, "unknown", "unknown")
+
+
+def display_update_check() -> None:
+    """Display update check results."""
+    console = Console()
+    
+    console.print("\n[bold cyan]Checking for updates...[/bold cyan]\n")
+    
+    has_update, current, latest = check_for_updates()
+    
+    if current == "unknown":
+        console.print("[yellow]Could not determine current version[/yellow]")
+        console.print("[yellow]Make sure HiveTerminal was installed via git[/yellow]\n")
+        return
+    
+    console.print(f"Current version: [cyan]{current}[/cyan]")
+    console.print(f"Latest version:  [cyan]{latest}[/cyan]\n")
+    
+    if has_update:
+        console.print("[bold green]✨ Update available![/bold green]")
+        console.print("\nTo update, run: [bold]hive --update[/bold]\n")
+    else:
+        console.print("[bold green]✓ You're up to date![/bold green]\n")
+
+
+def update_hiveterminal() -> None:
+    """Update HiveTerminal to the latest version."""
+    console = Console()
+    
+    console.print("\n[bold cyan]Updating HiveTerminal...[/bold cyan]\n")
+    
+    # Get installation directory
+    install_dir = Path.home() / ".hiveterminal"
+    if not install_dir.exists():
+        console.print("[bold red]Error:[/bold red] HiveTerminal installation not found")
+        console.print(f"Expected location: {install_dir}\n")
+        sys.exit(1)
+    
+    try:
+        # Check for updates first
+        has_update, current, latest = check_for_updates()
+        
+        if not has_update:
+            console.print("[bold green]✓ Already up to date![/bold green]")
+            console.print(f"Current version: [cyan]{current}[/cyan]\n")
+            return
+        
+        console.print(f"Current version: [cyan]{current}[/cyan]")
+        console.print(f"Latest version:  [cyan]{latest}[/cyan]\n")
+        
+        # Pull latest changes
+        console.print("[bold]Pulling latest changes...[/bold]")
+        result = subprocess.run(
+            ["git", "pull", "origin", "master"],
+            cwd=install_dir,
+            capture_output=True,
+            text=True,
+            timeout=30
+        )
+        
+        if result.returncode != 0:
+            console.print(f"[bold red]Error pulling changes:[/bold red] {result.stderr}")
+            sys.exit(1)
+        
+        console.print("[green]✓ Changes pulled[/green]\n")
+        
+        # Update dependencies
+        console.print("[bold]Updating dependencies...[/bold]")
+        
+        venv_python = install_dir / ".venv" / "bin" / "python"
+        if not venv_python.exists():
+            venv_python = install_dir / ".venv" / "Scripts" / "python.exe"
+        
+        if not venv_python.exists():
+            console.print("[yellow]Warning: Virtual environment not found[/yellow]")
+            console.print("[yellow]Dependencies not updated[/yellow]\n")
+        else:
+            # Update HiveTerminal
+            subprocess.run(
+                [str(venv_python), "-m", "pip", "install", "-e", ".", "--upgrade", "--quiet"],
+                cwd=install_dir,
+                timeout=60
+            )
+            
+            # Update Vibe
+            subprocess.run(
+                [str(venv_python), "-m", "pip", "install", "-e", "Vibe/", "--upgrade", "--quiet"],
+                cwd=install_dir,
+                timeout=60
+            )
+            
+            console.print("[green]✓ Dependencies updated[/green]\n")
+        
+        # Show success message
+        console.print("[bold green]✅ Update complete![/bold green]")
+        console.print(f"Updated from [cyan]{current}[/cyan] to [cyan]{latest}[/cyan]\n")
+        console.print("To see what's new, run: [bold]hive --changelog[/bold]\n")
+        
+    except subprocess.TimeoutExpired:
+        console.print("[bold red]Error:[/bold red] Update timed out\n")
+        sys.exit(1)
+    except Exception as e:
+        console.print(f"[bold red]Error updating:[/bold red] {e}\n")
+        sys.exit(1)
+
+
+def display_changelog() -> None:
+    """Display the changelog."""
+    console = Console()
+    
+    install_dir = Path.home() / ".hiveterminal"
+    changelog_path = install_dir / "CHANGELOG.md"
+    
+    if not changelog_path.exists():
+        console.print("\n[yellow]Changelog not found[/yellow]")
+        console.print("View online: https://github.com/Tushar04-Master/HiveTerminal/blob/main/CHANGELOG.md\n")
+        return
+    
+    try:
+        with open(changelog_path, 'r') as f:
+            content = f.read()
+        
+        console.print("\n")
+        console.print(content)
+        console.print("\n")
+    except Exception as e:
+        console.print(f"\n[bold red]Error reading changelog:[/bold red] {e}\n")
 
 
 def display_memory_stats() -> None:
