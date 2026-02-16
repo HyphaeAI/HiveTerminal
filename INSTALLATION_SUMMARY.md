@@ -20,7 +20,7 @@ A lightweight bash script that:
 
 **Usage:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/master/install.sh | bash
 ```
 
 ### 2. Updated README.md
@@ -147,7 +147,7 @@ find . -type f \( -name "*.sh" -o -name "*.md" \) -exec sed -i 's/Tushar04-Maste
 
 ```bash
 # In a clean environment
-curl -fsSL https://raw.githubusercontent.com/yourusername/hiveterminal/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/yourusername/hiveterminal/master/install.sh | bash
 ```
 
 ## User Experience
@@ -170,7 +170,7 @@ Total time: 15-30 minutes
 ### After (One-Line Install)
 ```bash
 # User runs:
-curl -fsSL https://raw.githubusercontent.com/yourusername/hiveterminal/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/yourusername/hiveterminal/master/install.sh | bash
 
 # Then installs Ollama and model:
 brew install ollama  # or Linux equivalent

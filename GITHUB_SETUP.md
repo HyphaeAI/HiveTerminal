@@ -8,7 +8,7 @@ After pushing to GitHub, update these files with your actual GitHub username/rep
 Replace `Tushar04-Master` with your GitHub username:
 ```bash
 # Line 4:
-# Usage: curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.sh | bash
+# Usage: curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/master/install.sh | bash
 
 # Line 73:
 git clone https://github.com/HyphaeAI/HiveTerminal.git "$INSTALL_DIR"
@@ -18,7 +18,7 @@ git clone https://github.com/HyphaeAI/HiveTerminal.git "$INSTALL_DIR"
 Replace `Tushar04-Master` with your GitHub username:
 ```bash
 # In the "One-Line Installation" section:
-curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/master/install.sh | bash
 ```
 
 ### 3. INSTALL.md
@@ -50,7 +50,7 @@ git push origin main
 
 2. Test the one-line installer:
 ```bash
-curl -fsSL https://raw.githubusercontent.com/yourusername/hiveterminal/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/yourusername/hiveterminal/master/install.sh | bash
 ```
 
 ## Making install.sh Accessible
@@ -68,10 +68,10 @@ Before sharing with others, test it:
 
 ```bash
 # Test in a clean environment (Docker or VM recommended)
-curl -fsSL https://raw.githubusercontent.com/yourusername/hiveterminal/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/yourusername/hiveterminal/master/install.sh | bash
 
 # Or download and inspect first:
-curl -fsSL https://raw.githubusercontent.com/yourusername/hiveterminal/main/install.sh > test-install.sh
+curl -fsSL https://raw.githubusercontent.com/yourusername/hiveterminal/master/install.sh > test-install.sh
 cat test-install.sh  # Review the script
 bash test-install.sh
 ```
@@ -81,7 +81,7 @@ bash test-install.sh
 Once everything is set up, users can install with:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/yourusername/hiveterminal/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/yourusername/hiveterminal/master/install.sh | bash
 ```
 
 Add this to your README's Quick Start section!

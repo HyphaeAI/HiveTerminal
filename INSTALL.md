@@ -6,12 +6,12 @@
 
 **macOS & Linux:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/master/install.sh | bash
 ```
 
 **Windows (PowerShell):**
 ```powershell
-irm https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/master/install.ps1 | iex
 ```
 
 This automated installer will:

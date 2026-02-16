@@ -2,7 +2,7 @@
 set -e
 
 # HiveTerminal One-Line Installer
-# Usage: curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.sh | bash
+# Usage: curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/master/install.sh | bash
 
 echo "🐝 Installing HiveTerminal..."
 echo ""

@@ -1,5 +1,5 @@
 # HiveTerminal One-Line Installer for Windows
-# Usage: irm https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.ps1 | iex
+# Usage: irm https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/master/install.ps1 | iex
 
 Write-Host "🐝 Installing HiveTerminal..." -ForegroundColor Cyan
 Write-Host ""
