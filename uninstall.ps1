@@ -1,5 +1,5 @@
 # HiveTerminal Uninstaller for Windows
-# Run from PowerShell: irm https://raw.githubusercontent.com/YOUR_REPO/main/uninstall.ps1 | iex
+# Run from PowerShell: irm https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/uninstall.ps1 | iex
 
 Write-Host "==================================================" -ForegroundColor Cyan
 Write-Host "HiveTerminal Uninstaller for Windows" -ForegroundColor Cyan

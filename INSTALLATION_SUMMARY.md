@@ -20,7 +20,7 @@ A lightweight bash script that:
 
 **Usage:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Tushar04-Master/HiveTerminal/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.sh | bash
 ```
 
 ### 2. Updated README.md
@@ -129,25 +129,19 @@ export PATH="$HOME/.hiveterminal:$PATH"
 
 ### Update GitHub URLs
 
-Replace `Tushar04-Master` in these files:
-- `install.sh` (2 locations)
-- `README.md` (1 location)
-- `INSTALL.md` (multiple locations)
-
-**Quick command:**
-```bash
-# macOS:
-find . -type f \( -name "*.sh" -o -name "*.md" \) -exec sed -i '' 's/Tushar04-Master/yourusername/g' {} +
-
-# Linux:
-find . -type f \( -name "*.sh" -o -name "*.md" \) -exec sed -i 's/Tushar04-Master/yourusername/g' {} +
-```
+✅ **Already updated!** All files now use `HyphaeAI/HiveTerminal`:
+- `install.sh` - Updated
+- `install.ps1` - Updated
+- `README.md` - Updated
+- `INSTALL.md` - Updated
+- `UNINSTALL.md` - Updated
+- All documentation files - Updated
 
 ### Test the Installer
 
 ```bash
 # In a clean environment
-curl -fsSL https://raw.githubusercontent.com/yourusername/hiveterminal/master/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.sh | bash
 ```
 
 ## User Experience
@@ -170,7 +164,7 @@ Total time: 15-30 minutes
 ### After (One-Line Install)
 ```bash
 # User runs:
-curl -fsSL https://raw.githubusercontent.com/yourusername/hiveterminal/master/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.sh | bash
 
 # Then installs Ollama and model:
 brew install ollama  # or Linux equivalent
@@ -210,9 +204,9 @@ The installer handles:
 
 ## Next Steps
 
-1. **Update GitHub URLs** - Replace Tushar04-Master
+1. ✅ **GitHub URLs Updated** - All files now use HyphaeAI/HiveTerminal
 2. **Test installer** - In clean environment
-3. **Update README** - Add your actual GitHub URL
+3. **Push to GitHub** - Commit and push all changes
 4. **Create release** - Tag v1.0.0
 5. **Share** - Post installation command
 

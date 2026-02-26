@@ -1,6 +1,6 @@
 #!/bin/bash
 # HiveTerminal Uninstaller for macOS/Linux
-# Run from anywhere: curl -fsSL https://raw.githubusercontent.com/YOUR_REPO/main/uninstall.sh | bash
+# Run from anywhere: curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/uninstall.sh | bash
 
 set -e
 

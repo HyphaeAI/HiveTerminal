@@ -77,7 +77,7 @@ enable_update_checks = false
 hive --changelog
 ```
 
-Or visit: https://github.com/Tushar04-Master/HiveTerminal/blob/main/CHANGELOG.md
+Or visit: https://github.com/HyphaeAI/HiveTerminal/blob/main/CHANGELOG.md
 
 ## Rollback to Previous Version
 
@@ -144,15 +144,15 @@ pip install -e Vibe/ --force-reinstall
 
 ### GitHub Releases
 Watch the repository for release notifications:
-https://github.com/Tushar04-Master/HiveTerminal/releases
+https://github.com/HyphaeAI/HiveTerminal/releases
 
 ### Star the Repository
 Get notified of major updates:
-https://github.com/Tushar04-Master/HiveTerminal
+https://github.com/HyphaeAI/HiveTerminal
 
 ### Check Issues
 See known issues and upcoming features:
-https://github.com/Tushar04-Master/HiveTerminal/issues
+https://github.com/HyphaeAI/HiveTerminal/issues
 
 ## Version History
 

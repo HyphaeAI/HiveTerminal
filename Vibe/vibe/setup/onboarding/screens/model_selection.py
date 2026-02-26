@@ -13,18 +13,21 @@ from vibe.cli.textual_ui.widgets.no_markup_static import NoMarkupStatic
 from vibe.setup.onboarding.base import OnboardingScreen
 
 # Model options for each provider
+# Format: (model_alias, display_name)
+# The model_alias must match the alias in config.py DEFAULT_MODELS
 PROVIDER_MODELS = {
     "xiaomi_mimo": [
-        ("mimo-v2-flash", "Mimo v2 Flash (309B, 256K context, FREE)"),
+        ("xiaomi_mimo/mimo-v2-flash", "Mimo v2 Flash (309B, 256K context, FREE)"),
     ],
     "openai": [
         ("gpt-4o", "GPT-4o (Latest, best)"),
         ("gpt-4o-mini", "GPT-4o Mini (Fast, cheap)"),
         ("gpt-4-turbo", "GPT-4 Turbo (Powerful)"),
+        ("gpt-4", "GPT-4 (Powerful)"),
         ("gpt-3.5-turbo", "GPT-3.5 Turbo (Fast)"),
     ],
     "anthropic": [
-        ("claude-3-5-sonnet-20241022", "Claude 3.5 Sonnet (Best)"),
+        ("claude-sonnet", "Claude 3.5 Sonnet (Best)"),
         ("claude-3-5-haiku-20241022", "Claude 3.5 Haiku (Fast)"),
         ("claude-3-opus-20240229", "Claude 3 Opus (Most capable)"),
         ("claude-3-sonnet-20240229", "Claude 3 Sonnet (Balanced)"),
@@ -157,37 +160,136 @@ class ModelSelectionScreen(OnboardingScreen):
         self._save_model_and_finish()
     
     def _save_model_and_finish(self) -> None:
-        """Save the selected model to config."""
-        from pathlib import Path
+        """Save the selected model and provider to config using Vibe's config system."""
+        from vibe.core.config import VibeConfig, ProviderConfig, ModelConfig, Backend
         
-        # Try to find and update the config file
-        # Priority: workspace .hive_config.toml > ~/.vibe/config.toml
-        config_paths = [
-            Path.cwd() / ".hive_config.toml",
-            Path.home() / ".vibe" / "config.toml",
-        ]
+        # Define provider configurations for each provider
+        provider_configs = {
+            "xiaomi_mimo": ProviderConfig(
+                name="xiaomi_mimo",
+                api_base="https://api.xiaomimimo.com/v1",
+                api_key_env_var="XIAOMI_MIMO_API_KEY",
+                backend=Backend.LITELLM,
+            ),
+            "openai": ProviderConfig(
+                name="openai",
+                api_base="https://api.openai.com/v1",
+                api_key_env_var="OPENAI_API_KEY",
+                backend=Backend.LITELLM,
+            ),
+            "anthropic": ProviderConfig(
+                name="anthropic",
+                api_base="https://api.anthropic.com/v1",
+                api_key_env_var="ANTHROPIC_API_KEY",
+                backend=Backend.LITELLM,
+            ),
+            "openrouter": ProviderConfig(
+                name="openrouter",
+                api_base="https://openrouter.ai/api/v1",
+                api_key_env_var="OPENROUTER_API_KEY",
+                backend=Backend.LITELLM,
+            ),
+            "groq": ProviderConfig(
+                name="groq",
+                api_base="https://api.groq.com/openai/v1",
+                api_key_env_var="GROQ_API_KEY",
+                backend=Backend.LITELLM,
+            ),
+            "github": ProviderConfig(
+                name="github",
+                api_base="https://models.inference.ai.azure.com",
+                api_key_env_var="GITHUB_TOKEN",
+                backend=Backend.LITELLM,
+            ),
+            "google": ProviderConfig(
+                name="google",
+                api_base="https://generativelanguage.googleapis.com/v1beta",
+                api_key_env_var="GOOGLE_API_KEY",
+                backend=Backend.LITELLM,
+            ),
+            "huggingface": ProviderConfig(
+                name="huggingface",
+                api_base="https://api-inference.huggingface.co/v1",
+                api_key_env_var="HUGGINGFACE_API_KEY",
+                backend=Backend.LITELLM,
+            ),
+            "ollama": ProviderConfig(
+                name="ollama",
+                api_base="http://localhost:11434/v1",
+                api_key_env_var="",
+                backend=Backend.LITELLM,
+            ),
+        }
         
-        for config_path in config_paths:
-            if config_path.exists():
-                try:
-                    # Read the config file
-                    with open(config_path, 'r') as f:
-                        lines = f.readlines()
-                    
-                    # Find and update the active_model line
-                    updated = False
-                    for i, line in enumerate(lines):
-                        if line.strip().startswith('active_model'):
-                            lines[i] = f'active_model = "{self.selected_model}"\n'
-                            updated = True
-                            break
-                    
-                    # Write back if updated
-                    if updated:
-                        with open(config_path, 'w') as f:
-                            f.writelines(lines)
-                        break
-                except Exception:
-                    continue
+        # Define model configurations
+        model_configs = {
+            "xiaomi_mimo/mimo-v2-flash": ModelConfig(
+                name="mimo-v2-flash",
+                provider="xiaomi_mimo",
+                alias="xiaomi_mimo/mimo-v2-flash",
+                temperature=0.2,
+                input_price=0.0,
+                output_price=0.0,
+            ),
+            "gpt-4o": ModelConfig(
+                name="gpt-4o",
+                provider="openai",
+                alias="gpt-4o",
+                temperature=0.7,
+                input_price=2.5,
+                output_price=10.0,
+            ),
+            "gpt-4": ModelConfig(
+                name="gpt-4",
+                provider="openai",
+                alias="gpt-4",
+                temperature=0.7,
+                input_price=30.0,
+                output_price=60.0,
+            ),
+            "claude-sonnet": ModelConfig(
+                name="claude-3-5-sonnet-20241022",
+                provider="anthropic",
+                alias="claude-sonnet",
+                temperature=0.7,
+                input_price=3.0,
+                output_price=15.0,
+            ),
+        }
         
-        self.app.exit("completed")
+        try:
+            # Load current config
+            config = VibeConfig.load()
+            
+            # Get provider config for this provider
+            provider_config = provider_configs.get(self.provider_name)
+            if provider_config:
+                # Check if provider already exists
+                has_provider = any(p.name == self.provider_name for p in config.providers)
+                if not has_provider:
+                    # Add provider to config
+                    providers_list = [p.model_dump() for p in config.providers]
+                    providers_list.append(provider_config.model_dump())
+                    VibeConfig.save_updates({"providers": providers_list})
+            
+            # Get model config for this model
+            model_config = model_configs.get(self.selected_model)
+            if model_config:
+                # Check if model already exists
+                has_model = any(
+                    m.alias == self.selected_model or m.name == model_config.name
+                    for m in config.models
+                )
+                if not has_model:
+                    # Add model to config
+                    models_list = [m.model_dump() for m in config.models]
+                    models_list.append(model_config.model_dump())
+                    VibeConfig.save_updates({"models": models_list})
+            
+            # Set active model
+            VibeConfig.save_updates({"active_model": self.selected_model})
+            
+            self.app.exit("completed")
+        except Exception as e:
+            # If config system fails, show error and exit
+            self.app.exit(f"config_error:{e}")

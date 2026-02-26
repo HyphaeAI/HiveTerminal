@@ -141,7 +141,7 @@ All changes must go through code review before merging.
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/hiveterminal.git
+   git clone https://github.com/HyphaeAI/HiveTerminal.git
    cd hiveterminal
    ```
 

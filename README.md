@@ -77,12 +77,12 @@ HiveTerminal supports a wide range of AI providers:
 
 #### macOS & Linux
 ```bash
-curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/master/install.sh | sed 's/Tushar04-Master/HyphaeAI/g' | bash
+curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.sh | bash
 ```
 
 #### Windows (PowerShell)
 ```powershell
-irm https://raw.githubusercontent.com/Tushar04-Master/HiveTerminal/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.ps1 | iex
 ```
 
 **What the installer does:**
@@ -195,7 +195,7 @@ brew install ollama
 curl -fsSL https://ollama.ai/install.sh | sh
 
 # 2. Clone the repository
-git clone https://github.com/Tushar04-Master/HiveTerminal.git
+git clone https://github.com/HyphaeAI/HiveTerminal.git
 cd hiveterminal
 
 # 3. Create virtual environment (Python 3.10+ required, 3.13 recommended)
@@ -250,7 +250,7 @@ hive --setup
 # Download and install from: https://ollama.ai/download/windows
 
 # 2. Clone the repository
-git clone https://github.com/Tushar04-Master/HiveTerminal.git
+git clone https://github.com/HyphaeAI/HiveTerminal.git
 cd hiveterminal
 
 # 3. Create virtual environment
@@ -790,7 +790,7 @@ If you need to completely remove HiveTerminal from your system:
 
 #### macOS & Linux
 ```bash
-curl -fsSL https://raw.githubusercontent.com/YOUR_REPO/main/uninstall.sh | bash
+curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/uninstall.sh | bash
 ```
 
 Or if you have the repository:
@@ -800,7 +800,7 @@ cd ~/hiveterminal && ./uninstall.sh
 
 #### Windows (PowerShell)
 ```powershell
-irm https://raw.githubusercontent.com/YOUR_REPO/main/uninstall.ps1 | iex
+irm https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/uninstall.ps1 | iex
 ```
 
 Or if you have the repository:

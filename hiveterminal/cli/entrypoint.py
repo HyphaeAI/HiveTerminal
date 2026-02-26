@@ -469,7 +469,7 @@ def display_changelog() -> None:
     
     if not changelog_path.exists():
         console.print("\n[yellow]Changelog not found[/yellow]")
-        console.print("View online: https://github.com/Tushar04-Master/HiveTerminal/blob/main/CHANGELOG.md\n")
+        console.print("View online: https://github.com/HyphaeAI/HiveTerminal/blob/main/CHANGELOG.md\n")
         return
     
     try:

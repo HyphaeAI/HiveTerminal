@@ -17,7 +17,7 @@
 - [x] `README.md` - Updated with Windows support and installation instructions
 
 ### GitHub Username
-- [x] Updated to: `Tushar04-Master`
+- [x] Updated to: `HyphaeAI`
 - [x] Verified in: install.sh, install.ps1, README.md, INSTALL.md, GITHUB_SETUP.md
 
 ## 🚀 Commands to Push
@@ -33,19 +33,19 @@ git commit -F COMMIT_MESSAGE.txt
 git push origin main
 
 # 4. Verify on GitHub
-# Visit: https://github.com/Tushar04-Master/HiveTerminal
+# Visit: https://github.com/HyphaeAI/HiveTerminal
 ```
 
 ## 🧪 After Pushing - Test the Installers
 
 ### Test macOS/Linux Installer
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Tushar04-Master/HiveTerminal/main/install.sh
+curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.sh
 ```
 
 ### Test Windows Installer
 ```powershell
-irm https://raw.githubusercontent.com/Tushar04-Master/HiveTerminal/main/install.ps1
+irm https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.ps1
 ```
 
 If both work (show script content), you're good to go! ✅
@@ -67,12 +67,12 @@ Once pushed, users can install on any platform:
 
 **macOS & Linux:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Tushar04-Master/HiveTerminal/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.sh | bash
 ```
 
 **Windows (PowerShell):**
 ```powershell
-irm https://raw.githubusercontent.com/Tushar04-Master/HiveTerminal/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.ps1 | iex
 ```
 
 Both commands are already in your README! ✅

@@ -6,7 +6,7 @@ Complete guide for removing HiveTerminal from your system.
 
 ### macOS & Linux
 ```bash
-curl -fsSL https://raw.githubusercontent.com/YOUR_REPO/main/uninstall.sh | bash
+curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/uninstall.sh | bash
 ```
 
 Or if you have the repository:
@@ -16,7 +16,7 @@ cd ~/hiveterminal && ./uninstall.sh
 
 ### Windows (PowerShell - Run as Administrator)
 ```powershell
-irm https://raw.githubusercontent.com/YOUR_REPO/main/uninstall.ps1 | iex
+irm https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/uninstall.ps1 | iex
 ```
 
 Or if you have the repository:
@@ -395,10 +395,10 @@ If you want to reinstall HiveTerminal after uninstalling:
 ### Fresh Install
 ```bash
 # macOS/Linux:
-curl -fsSL https://raw.githubusercontent.com/YOUR_REPO/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.sh | bash
 
 # Windows:
-irm https://raw.githubusercontent.com/YOUR_REPO/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.ps1 | iex
 ```
 
 ### Restore Previous Configuration

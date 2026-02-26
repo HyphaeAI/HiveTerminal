@@ -14,7 +14,7 @@
 
 ### macOS & Linux
 ```bash
-curl -fsSL https://raw.githubusercontent.com/YOUR_REPO/main/uninstall.sh | bash
+curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/uninstall.sh | bash
 ```
 
 **Or locally:**
@@ -24,7 +24,7 @@ cd ~/hiveterminal && ./uninstall.sh
 
 ### Windows (PowerShell)
 ```powershell
-irm https://raw.githubusercontent.com/YOUR_REPO/main/uninstall.ps1 | iex
+irm https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/uninstall.ps1 | iex
 ```
 
 **Or locally:**
@@ -204,10 +204,10 @@ Copy-Item -Path "$env:USERPROFILE\.vibe" -Destination "$env:USERPROFILE\.vibe.ba
 ### Fresh Install
 ```bash
 # macOS/Linux:
-curl -fsSL https://raw.githubusercontent.com/YOUR_REPO/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.sh | bash
 
 # Windows:
-irm https://raw.githubusercontent.com/YOUR_REPO/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.ps1 | iex
 ```
 
 ### Restore Configuration

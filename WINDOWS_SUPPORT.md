@@ -8,7 +8,7 @@ HiveTerminal now runs on Windows 10/11 with full feature parity with macOS and L
 
 ### One-Line Install (PowerShell)
 ```powershell
-irm https://raw.githubusercontent.com/Tushar04-Master/hiveterminal/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.ps1 | iex
 ```
 
 ## Prerequisites
@@ -41,7 +41,7 @@ irm https://raw.githubusercontent.com/Tushar04-Master/hiveterminal/main/install.
 
 2. **Run the installer:**
    ```powershell
-   irm https://raw.githubusercontent.com/Tushar04-Master/hiveterminal/main/install.ps1 | iex
+   irm https://raw.githubusercontent.com/HyphaeAI/HiveTerminal/main/install.ps1 | iex
    ```
 
 3. **Follow the prompts:**
@@ -79,7 +79,7 @@ irm https://raw.githubusercontent.com/Tushar04-Master/hiveterminal/main/install.
 # - Ollama from https://ollama.ai/download/windows
 
 # 2. Clone repository
-git clone https://github.com/Tushar04-Master/hiveterminal.git
+git clone https://github.com/HyphaeAI/HiveTerminal.git
 cd hiveterminal
 
 # 3. Create virtual environment
