@@ -93,6 +93,9 @@ class LiteLLMBackend:
             os.environ["ANTHROPIC_API_BASE"] = self._provider.api_base
         elif provider_name == "ollama":
             os.environ["OLLAMA_API_BASE"] = self._provider.api_base
+        elif provider_name == "xiaomi_mimo":
+            # Xiaomi Mimo uses OpenAI-compatible API
+            os.environ["OPENAI_API_BASE"] = self._provider.api_base
 
     def _validate_api_key(self) -> None:
         """Validate that required API keys are present.
@@ -343,6 +346,10 @@ class LiteLLMBackend:
         # Ollama models need the "ollama/" prefix
         if provider_name == "ollama" and not model_name.startswith("ollama/"):
             return f"ollama/{model_name}"
+        
+        # Xiaomi Mimo uses OpenAI-compatible API, so use openai/ prefix
+        if provider_name == "xiaomi_mimo":
+            return f"openai/{model_name}"
         
         # Anthropic models should use the full model name
         # OpenAI models use the model name directly
