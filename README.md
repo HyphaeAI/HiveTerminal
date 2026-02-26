@@ -782,6 +782,115 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 - Use default installation options
 - Restart PowerShell after installation
 
+## Uninstalling HiveTerminal
+
+If you need to completely remove HiveTerminal from your system:
+
+### One-Line Uninstall
+
+#### macOS & Linux
+```bash
+curl -fsSL https://raw.githubusercontent.com/YOUR_REPO/main/uninstall.sh | bash
+```
+
+Or if you have the repository:
+```bash
+cd ~/hiveterminal && ./uninstall.sh
+```
+
+#### Windows (PowerShell)
+```powershell
+irm https://raw.githubusercontent.com/YOUR_REPO/main/uninstall.ps1 | iex
+```
+
+Or if you have the repository:
+```powershell
+cd ~\hiveterminal
+.\uninstall.ps1
+```
+
+### What Gets Removed
+
+The uninstaller will remove:
+- ✓ Installation directory (`~/hiveterminal` or `~/.hiveterminal`)
+- ✓ Configuration files (`~/.vibe/`)
+- ✓ Environment files (`~/.vibe/.env`)
+- ✓ Memory database (`.hive_memory/`)
+- ✓ Backups and logs (`.hive_backups/`, `.hive_logs/`)
+- ✓ Shell aliases and PATH entries
+- ✓ Environment variables (`XIAOMI_MIMO_API_KEY`, etc.)
+- ✓ Wrapper scripts (`hive` command)
+
+### Manual Uninstall
+
+If you prefer to uninstall manually:
+
+<details>
+<summary><b>macOS & Linux Manual Uninstall</b></summary>
+
+```bash
+# 1. Remove installation directory
+rm -rf ~/hiveterminal
+# or
+rm -rf ~/.hiveterminal
+
+# 2. Remove configuration
+rm -rf ~/.vibe
+
+# 3. Remove memory database (if in project directory)
+rm -rf .hive_memory .hive_backups .hive_logs
+
+# 4. Remove shell aliases
+# Edit ~/.zshrc or ~/.bashrc and remove lines containing:
+# - hiveterminal
+# - alias hive=
+# - XIAOMI_MIMO_API_KEY
+
+# 5. Reload shell
+source ~/.zshrc  # or source ~/.bashrc
+```
+
+</details>
+
+<details>
+<summary><b>Windows Manual Uninstall</b></summary>
+
+```powershell
+# 1. Remove installation directory
+Remove-Item -Path "$env:USERPROFILE\hiveterminal" -Recurse -Force
+
+# 2. Remove configuration
+Remove-Item -Path "$env:USERPROFILE\.vibe" -Recurse -Force
+
+# 3. Remove memory database (if in project directory)
+Remove-Item -Path ".hive_memory" -Recurse -Force
+Remove-Item -Path ".hive_backups" -Recurse -Force
+Remove-Item -Path ".hive_logs" -Recurse -Force
+
+# 4. Remove environment variables (Run as Administrator)
+[Environment]::SetEnvironmentVariable("XIAOMI_MIMO_API_KEY", $null, "User")
+
+# 5. Remove from PATH (Run as Administrator)
+$currentPath = [Environment]::GetEnvironmentVariable("Path", "User")
+$newPath = ($currentPath -split ';' | Where-Object { $_ -notlike "*hiveterminal*" }) -join ';'
+[Environment]::SetEnvironmentVariable("Path", $newPath, "User")
+
+# 6. Restart PowerShell
+```
+
+</details>
+
+### After Uninstall
+
+After uninstalling:
+1. Restart your terminal/PowerShell
+2. Verify removal: `hive --version` should show "command not found"
+3. Check that `~/.vibe/` directory is gone
+4. Optionally remove Ollama if you don't need it:
+   - macOS: `brew uninstall ollama`
+   - Linux: `sudo rm -rf /usr/local/bin/ollama`
+   - Windows: Uninstall from Settings → Apps
+
 ## Contributing
 
 We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
