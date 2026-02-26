@@ -18,6 +18,7 @@ from vibe.core.paths.global_paths import GLOBAL_ENV_FILE
 from vibe.setup.onboarding.base import OnboardingScreen
 
 PROVIDER_HELP = {
+    "xiaomi_mimo": ("https://platform.xiaomimimo.com/#/console/api-keys", "Xiaomi Mimo Platform"),
     "openai": ("https://platform.openai.com/api-keys", "OpenAI Platform"),
     "anthropic": ("https://console.anthropic.com/settings/keys", "Anthropic Console"),
     "openrouter": ("https://openrouter.ai/keys", "OpenRouter Dashboard"),
@@ -52,6 +53,7 @@ class ApiKeyScreen(OnboardingScreen):
             self.provider_name = provider_name
             # Map provider name to config
             provider_map = {
+                "xiaomi_mimo": ("xiaomi_mimo", "XIAOMI_MIMO_API_KEY"),
                 "openai": ("openai", "OPENAI_API_KEY"),
                 "anthropic": ("anthropic", "ANTHROPIC_API_KEY"),
                 "openrouter": ("openrouter", "OPENROUTER_API_KEY"),

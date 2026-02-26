@@ -27,6 +27,20 @@ HiveTerminal is an AI-powered coding assistant that combines the flexibility of 
 - Structured, transparent approach
 - Best for complex, multi-step tasks
 
+### 🌐 Multiple LLM Providers
+
+HiveTerminal supports a wide range of AI providers:
+
+- **Xiaomi Mimo** - Free 309B parameter model with 256K context (Recommended for coding)
+- **OpenAI** - GPT-4, GPT-4o, and other models
+- **Anthropic** - Claude models
+- **OpenRouter** - Access to Mistral, Llama, and more
+- **Groq** - Fast inference
+- **GitHub Models** - Free tier available
+- **Google AI Studio** - Gemini models
+- **Hugging Face** - Open-source models
+- **Ollama** - 100% local, offline models
+
 ### 🧠 Hive Mind Memory System
 
 - **Automatic Indexing**: Code changes are automatically embedded and stored
@@ -40,6 +54,15 @@ HiveTerminal is an AI-powered coding assistant that combines the flexibility of 
 - **Privacy-Focused**: Your code never leaves your machine
 - **No API Costs**: Free to use with local models
 - **Multiple Models**: Support for Qwen, Llama, Mistral, and more
+
+### ⚡ Xiaomi Mimo v2 Flash (Recommended)
+
+- **Free API**: No cost during beta period
+- **High Performance**: 309B parameter MoE model with 15B active
+- **256K Context**: Massive context window for large codebases
+- **#1 on SWE-bench**: 73.4% score, best for coding tasks
+- **Fast Inference**: 150 tokens/sec
+- **Get API Key**: https://platform.xiaomimimo.com/#/console/api-keys
 
 ### 🎨 Familiar Interface
 

@@ -56,6 +56,11 @@ class ProviderSelectionScreen(OnboardingScreen):
                     with Vertical(id="provider-buttons"):
                         self.buttons = [
                             Button(
+                                "Xiaomi Mimo (Free, 256K context)",
+                                id="btn-xiaomi",
+                                variant="primary"
+                            ),
+                            Button(
                                 "OpenAI (GPT-4, GPT-4o)",
                                 id="btn-openai",
                                 variant="primary"
@@ -130,6 +135,7 @@ class ProviderSelectionScreen(OnboardingScreen):
         button_id = event.button.id
         
         provider_map = {
+            "btn-xiaomi": "xiaomi_mimo",
             "btn-openai": "openai",
             "btn-anthropic": "anthropic",
             "btn-openrouter": "openrouter",

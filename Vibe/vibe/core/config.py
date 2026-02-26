@@ -273,6 +273,12 @@ DEFAULT_PROVIDERS = [
         backend=Backend.MISTRAL,
     ),
     ProviderConfig(
+        name="xiaomi_mimo",
+        api_base="https://api.xiaomimimo.com/v1",
+        api_key_env_var="XIAOMI_MIMO_API_KEY",
+        backend=Backend.LITELLM,
+    ),
+    ProviderConfig(
         name="openai",
         api_base="https://api.openai.com/v1",
         api_key_env_var="OPENAI_API_KEY",
