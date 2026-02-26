@@ -305,6 +305,13 @@ DEFAULT_PROVIDERS = [
 
 DEFAULT_MODELS = [
     ModelConfig(
+        name="mimo-v2-flash",
+        provider="xiaomi_mimo",
+        alias="xiaomi_mimo/mimo-v2-flash",
+        input_price=0.0,
+        output_price=0.0,
+    ),
+    ModelConfig(
         name="mistral-vibe-cli-latest",
         provider="mistral",
         alias="devstral-2",

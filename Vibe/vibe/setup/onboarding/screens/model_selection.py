@@ -14,6 +14,9 @@ from vibe.setup.onboarding.base import OnboardingScreen
 
 # Model options for each provider
 PROVIDER_MODELS = {
+    "xiaomi_mimo": [
+        ("mimo-v2-flash", "Mimo v2 Flash (309B, 256K context, FREE)"),
+    ],
     "openai": [
         ("gpt-4o", "GPT-4o (Latest, best)"),
         ("gpt-4o-mini", "GPT-4o Mini (Fast, cheap)"),
