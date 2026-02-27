@@ -8,6 +8,54 @@ A dual-mode terminal-based agentic IDE with shared memory and revolutionary toke
 
 ---
 
+## 📑 Table of Contents
+
+### Quick Start
+- [🏆 Why HiveTerminal Stands Out](#-why-hiveterminal-stands-out)
+- [What is HiveTerminal?](#what-is-hiveterminal)
+- [Quick Start](#quick-start)
+  - [One-Line Installation](#one-line-installation)
+  - [Installing Ollama & AI Models](#installing-ollama--ai-models)
+  - [First Run](#first-run)
+
+### Features & Innovation
+- [Key Features](#key-features)
+  - [🚀 Revolutionary Token Optimization (98% Reduction)](#-revolutionary-token-optimization-98-reduction)
+  - [🔄 Dual-Mode Operation](#-dual-mode-operation)
+  - [🧠 Hive Mind Memory System](#-hive-mind-memory-system)
+  - [🌐 Multiple LLM Providers](#-multiple-llm-providers)
+  - [🌐 Local-First with Ollama](#-local-first-with-ollama)
+  - [⚡ Xiaomi Mimo v2 Flash](#-xiaomi-mimo-v2-flash-recommended)
+- [🎯 Competitive Advantages](#-competitive-advantages)
+
+### Usage & Configuration
+- [Usage Examples](#usage-examples)
+- [Configuration](#configuration)
+- [Memory System](#memory-system)
+- [CLI Reference](#cli-reference)
+- [When to Use Each Mode](#when-to-use-each-mode)
+
+### Technical Details
+- [What Makes HiveTerminal Different?](#what-makes-hiveterminal-different)
+- [Architecture](#architecture)
+- [Project Structure](#project-structure)
+- [Requirements](#requirements)
+
+### Installation & Setup
+- [Manual Installation](#manual-installation)
+- [Model Comparison](#model-comparison)
+- [Choosing the Right Model](#choosing-the-right-model)
+- [Adding to PATH](#adding-to-path-manual-installation)
+
+### Support
+- [Troubleshooting](#troubleshooting)
+- [Uninstalling HiveTerminal](#uninstalling-hiveterminal)
+- [Contributing](#contributing)
+- [License](#license)
+- [Support](#support)
+
+---
+
 ## 🏆 Why HiveTerminal Stands Out
 
 ### The Problem We Solved
