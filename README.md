@@ -1,8 +1,8 @@
 # HiveTerminal
 
-**The First Agentic IDE That Solves the Token Explosion Problem**
+**The First Terminal-Based Agentic Coding Assistant That Solves the Token Explosion Problem**
 
-A dual-mode terminal-based agentic IDE with shared memory and revolutionary token optimization, built on Mistral Vibe.
+A dual-mode CLI tool with shared memory and revolutionary token optimization, built on Mistral Vibe.
 
 **✨ Now with full Windows support!** Works on macOS, Linux, and Windows 10/11.
 
@@ -105,7 +105,7 @@ HiveTerminal implements a **two-phase token optimization system** that reduces t
 
 ### Key Innovations
 
-1. **Token Optimization**: Only agentic IDE that solves the token explosion problem
+1. **Token Optimization**: Only terminal-based agentic tool that solves the token explosion problem
 2. **Dual-Mode Operation**: Choose between conversational and spec-first workflows
 3. **Hive Mind Memory**: Git-shareable vector database for team knowledge
 4. **Smart State Management**: AI automatically stores and retrieves working data
@@ -116,7 +116,7 @@ HiveTerminal implements a **two-phase token optimization system** that reduces t
 
 ## What is HiveTerminal?
 
-HiveTerminal is an AI-powered coding assistant that combines the flexibility of conversational workflows with the transparency of spec-first development. Built on top of Mistral Vibe, it adds three revolutionary innovations:
+HiveTerminal is a terminal-based AI coding assistant that combines the flexibility of conversational workflows with the transparency of spec-first development. Built on top of Mistral Vibe, it adds three revolutionary innovations:
 
 1. **Token Optimization**: 98% reduction in token usage through sliding window + local state
 2. **Dual-Mode Operation**: Choose between conversational (Vibe Mode) and spec-first (Spec Mode) workflows
@@ -184,7 +184,7 @@ See [STATE_MANAGEMENT_QUICK_START.md](STATE_MANAGEMENT_QUICK_START.md) for detai
 - Structured, transparent approach
 - Best for complex, multi-step tasks
 
-**Why It's Unique**: Most agentic IDEs force you into one workflow. HiveTerminal lets you choose based on the task, and switch anytime with `/mode`.
+**Why It's Unique**: Most agentic coding tools force you into one workflow. HiveTerminal lets you choose based on the task, and switch anytime with `/mode`.
 
 ### 🧠 Hive Mind Memory System
 
@@ -264,7 +264,7 @@ HiveTerminal supports a wide range of AI providers - **no vendor lock-in**:
 
 ### The Bottom Line
 
-**HiveTerminal is the only agentic IDE that**:
+**HiveTerminal is the only terminal-based agentic coding assistant that**:
 1. Solves the token explosion problem (98% reduction)
 2. Offers dual-mode operation (conversational + spec-first)
 3. Provides git-shareable team memory
@@ -727,7 +727,7 @@ hive --version
 
 ### The Token Optimization Breakthrough
 
-**Every other agentic IDE has the same problem**: They send the entire conversation history with every API request, causing exponential token growth.
+**Every other agentic coding tool has the same problem**: They send the entire conversation history with every API request, causing exponential token growth.
 
 **HiveTerminal is the first to solve this** with a two-phase optimization system:
 
@@ -773,7 +773,7 @@ hive --version
 
 ### Why This Matters for Judges
 
-**Innovation**: First agentic IDE to solve the token explosion problem that plagues all stateless AI APIs.
+**Innovation**: First terminal-based agentic coding assistant to solve the token explosion problem that plagues all stateless AI APIs.
 
 **Impact**: Makes long coding sessions 98% cheaper, democratizing access to AI-powered development.
 
@@ -1203,7 +1203,7 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 
 ## Acknowledgments
 
-Built on top of [Mistral Vibe](https://github.com/mistralai/vibe) - a powerful terminal-based agentic IDE.
+Built on top of [Mistral Vibe](https://github.com/mistralai/vibe) - a powerful terminal-based agentic coding assistant.
 
 ## Support
 

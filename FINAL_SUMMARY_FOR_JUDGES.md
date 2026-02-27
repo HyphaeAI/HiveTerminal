@@ -2,7 +2,7 @@
 
 ## 🏆 The Innovation
 
-**HiveTerminal is the first agentic IDE that solves the token explosion problem inherent in all stateless AI APIs.**
+**HiveTerminal is the first terminal-based agentic coding assistant that solves the token explosion problem inherent in all stateless AI APIs.**
 
 ## 📊 The Problem
 
@@ -50,7 +50,7 @@ SAVINGS: $59.40 per session (98% reduction)
 ## 🎯 Why This Matters
 
 ### 1. Innovation
-- **First-mover**: Only agentic IDE solving this problem
+- **First-mover**: Only terminal-based agentic coding assistant solving this problem
 - **Novel approach**: Two-phase optimization is unique
 - **Automatic**: Works transparently without user intervention
 - **Universal**: Works with any AI provider
@@ -86,7 +86,7 @@ Beyond token optimization, HiveTerminal offers:
 ### 1. Dual-Mode Operation
 - **Conversational Mode**: Tool-by-tool execution (like Vibe)
 - **Spec Mode**: Plan → Approve → Execute workflow
-- **Unique**: Only agentic IDE with both modes
+- **Unique**: Only terminal-based agentic coding assistant with both modes
 - **Flexible**: Switch anytime with `/mode` command
 
 ### 2. Hive Mind Memory
@@ -210,7 +210,7 @@ Response to User
 ## 🏅 Why HiveTerminal Should Win
 
 ### 1. Solves a Real Problem
-- Token explosion affects every agentic IDE
+- Token explosion affects every agentic coding tool
 - Real-world testing showed 1M token waste
 - $60 vs $0.60 cost difference is significant
 
@@ -277,7 +277,7 @@ Response to User
 
 ## 🎯 Final Verdict
 
-**HiveTerminal is the first and only agentic IDE that solves the token explosion problem**, achieving:
+**HiveTerminal is the first and only terminal-based agentic coding assistant that solves the token explosion problem**, achieving:
 
 - ✅ **98% token reduction** (validated with real-world testing)
 - ✅ **100x cost advantage** over all competitors
@@ -294,9 +294,9 @@ Response to User
 - **Problem**: Token explosion in stateless AI APIs
 - **Solution**: Two-phase optimization (sliding window + local state)
 - **Result**: 98% token reduction, $59.40 saved per session
-- **Innovation**: First agentic IDE to solve this problem
+- **Innovation**: First terminal-based agentic coding assistant to solve this problem
 - **Status**: Production-ready with comprehensive testing
 - **Impact**: Makes AI development 100x cheaper
 - **Uniqueness**: Only tool with token optimization + dual-mode + shared memory + true local-first
 
-**HiveTerminal: The first agentic IDE that's actually affordable for long coding sessions.** 🚀
+**HiveTerminal: The first terminal-based agentic coding assistant that's actually affordable for long coding sessions.** 🚀
