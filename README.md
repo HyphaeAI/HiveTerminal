@@ -168,7 +168,7 @@ SAVINGS: $59.40 (98% reduction)
 - ✅ Works with any AI provider
 - ✅ Completely automatic and transparent
 
-See [STATE_MANAGEMENT_QUICK_START.md](STATE_MANAGEMENT_QUICK_START.md) for details.
+See [docs/STATE_MANAGEMENT_QUICK_START.md](docs/STATE_MANAGEMENT_QUICK_START.md) for details.
 
 ### 🔄 Dual-Mode Operation
 
@@ -349,7 +349,7 @@ ollama pull qwen2.5-coder:1.5b      # 986MB download
 
 **⚠️ Important:** Models smaller than 7B may have issues with tool calling (outputting raw JSON instead of proper responses). For best experience, use 7B+ models.
 
-**📖 Detailed model comparison:** See [MODEL_GUIDE.md](MODEL_GUIDE.md) for comprehensive model selection guide.
+**📖 Detailed model comparison:** See [docs/MODEL_GUIDE.md](docs/MODEL_GUIDE.md) for comprehensive model selection guide.
 
 #### 3. Start HiveTerminal
 
