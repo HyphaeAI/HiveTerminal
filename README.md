@@ -101,7 +101,7 @@ HiveTerminal implements a **two-phase token optimization system** that reduces t
 | **100% Local (Ollama)** | ✅ Full offline support | ❌ Cloud only | ✅ Supported | ❌ Cloud only | ⚠️ Limited |
 | **Multi-Provider** | ✅ 8+ providers | ⚠️ Limited | ✅ Multiple | ⚠️ Limited | ⚠️ Limited |
 | **Terminal-Native** | ✅ Rich TUI | ❌ VS Code extension | ✅ CLI | ❌ VS Code extension | ❌ VS Code extension |
-| **Cost for Long Sessions** | 💰 $0.60 (100 turns) | 💰 $60 (100 turns) | 💰 $60 (100 turns) | 💰 $60 (100 turns) | 💰 $60 (100 turns) |
+| **Cost for Long Sessions** | 💰 $0.60 (100 turns) or Free for localy using LLM | 💰 $60 (100 turns) | 💰 $60 (100 turns) | 💰 $60 (100 turns) | 💰 $60 (100 turns) |
 
 ### Key Innovations
 
