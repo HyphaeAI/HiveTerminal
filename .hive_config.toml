@@ -22,6 +22,11 @@ auto_approve = false
 # API timeout in seconds
 api_timeout = 720.0
 
+# Maximum conversation turns to keep in history (prevents token explosion)
+# 1 turn = user message + assistant response + tool calls
+# Recommended: 3-5 for most use cases, 10+ for complex multi-step tasks
+max_conversation_turns = 5
+
 # ============================================================================
 # Provider Configuration
 # ============================================================================
@@ -182,6 +187,9 @@ save_dir = "~/.hive_logs"
 # ============================================================================
 # Tool Configuration (from Vibe)
 # ============================================================================
+# Additional tool search paths (HiveTerminal tools)
+tool_paths = ["./hiveterminal/tools"]
+
 [tools]
 # Configure specific tools here
 # Example:

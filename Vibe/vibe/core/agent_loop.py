@@ -174,6 +174,15 @@ class AgentLoop:
 
         self.session_logger = SessionLogger(config.session_logging, self.session_id)
         self._teleport_service: TeleportService | None = None
+        
+        # Initialize state manager for local state storage
+        try:
+            from hiveterminal.state import get_state_manager
+            self.state_manager = get_state_manager()
+            self.state_manager.load_state(self.session_id)
+        except ImportError:
+            # State manager not available (e.g., in Vibe-only mode)
+            self.state_manager = None
 
         thread = Thread(
             target=migrate_sessions_entrypoint,
@@ -371,7 +380,10 @@ class AgentLoop:
         )
 
     async def _conversation_loop(self, user_msg: str) -> AsyncGenerator[BaseEvent]:
-        user_message = LLMMessage(role=Role.user, content=user_msg)
+        # Inject working state into user message if available
+        enhanced_user_msg = self._enhance_message_with_state(user_msg)
+        
+        user_message = LLMMessage(role=Role.user, content=enhanced_user_msg)
         self.messages.append(user_message)
         self.stats.steps += 1
 
@@ -417,6 +429,28 @@ class AgentLoop:
 
         finally:
             await self._flush_new_messages()
+    
+    def _enhance_message_with_state(self, user_msg: str) -> str:
+        """Enhance user message with current working state.
+        
+        Injects local state into the message to provide context without
+        relying on chat history, reducing token usage.
+        
+        Args:
+            user_msg: The original user message
+            
+        Returns:
+            Enhanced message with state context
+        """
+        if not self.state_manager:
+            return user_msg
+        
+        state_context = self.state_manager.get_context_string()
+        if not state_context:
+            return user_msg
+        
+        # Inject state before the user message
+        return f"{state_context}\n\n---\n\n{user_msg}"
 
     async def _perform_llm_turn(self) -> AsyncGenerator[BaseEvent, None]:
         if self.enable_streaming:
@@ -796,11 +830,60 @@ class AgentLoop:
                 )
 
     def _clean_message_history(self) -> None:
+        """Clean and trim message history to prevent token explosion.
+        
+        Implements a sliding window to keep only recent conversation turns
+        while preserving the system prompt.
+        """
         ACCEPTABLE_HISTORY_SIZE = 2
         if len(self.messages) < ACCEPTABLE_HISTORY_SIZE:
             return
         self._fill_missing_tool_responses()
         self._ensure_assistant_after_tools()
+        self._trim_message_history()
+    
+    def _trim_message_history(self) -> None:
+        """Trim message history to a sliding window of recent turns.
+        
+        Keeps:
+        - System prompt (always first message)
+        - Last N conversation turns (configurable via max_conversation_turns)
+        
+        This prevents token explosion with stateless APIs like Xiaomi Mimo.
+        """
+        # Get configuration from config
+        max_turns = self.config.max_conversation_turns
+        
+        if len(self.messages) <= 1:
+            return  # Only system prompt, nothing to trim
+        
+        # Always keep the system prompt (first message)
+        system_prompt = self.messages[0]
+        conversation_messages = self.messages[1:]
+        
+        # Count conversation turns (user messages)
+        user_message_indices = [
+            i for i, msg in enumerate(conversation_messages)
+            if msg.role == Role.user
+        ]
+        
+        # If we have more turns than the limit, trim older ones
+        if len(user_message_indices) > max_turns:
+            # Keep only the last max_turns
+            cutoff_index = user_message_indices[-max_turns]
+            trimmed_conversation = conversation_messages[cutoff_index:]
+            
+            # Reconstruct messages with system prompt + recent conversation
+            self.messages = [system_prompt] + trimmed_conversation
+            
+            # Log the trim for debugging
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.debug(
+                f"Trimmed message history: kept last {max_turns} turns "
+                f"({len(trimmed_conversation)} messages), "
+                f"removed {len(conversation_messages) - len(trimmed_conversation)} old messages"
+            )
 
     def _fill_missing_tool_responses(self) -> None:
         i = 1

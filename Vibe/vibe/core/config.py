@@ -380,6 +380,19 @@ class VibeConfig(BaseSettings):
     enable_update_checks: bool = True
     enable_auto_update: bool = True
     api_timeout: float = 720.0
+    
+    # Sliding window configuration for message history
+    max_conversation_turns: int = Field(
+        default=5,
+        ge=1,
+        le=50,
+        description=(
+            "Maximum number of conversation turns to keep in message history. "
+            "Prevents token explosion with stateless APIs. "
+            "1 turn = user message + assistant response + tool calls. "
+            "Recommended: 3-5 for most use cases, 10+ for complex multi-step tasks."
+        )
+    )
 
     # TODO(vibe-nuage): remove exclude=True once the feature is publicly available
     nuage_enabled: bool = Field(default=False, exclude=True)
